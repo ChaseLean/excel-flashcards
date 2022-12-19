@@ -1,0 +1,403 @@
+:root {
+  --paleblue: rgb(126, 177, 200);
+  --darkblue: rgb(24 49 83);
+  --palered: rgba(252, 153, 153, 0.8);
+  --palered-overlay: rgba(252, 153, 153, 0.2);
+  --paleblue-overlay: rgba(126, 177, 200, 0.2);
+  --lightwhite-overlay: rgba(255, 255, 255, 0.2);
+  --mediumwhite-overlay: rgba(255, 255, 255, 0.5);
+  --darkwhite-overlay: rgba(255, 255, 255, 0.8);
+  --lightgray-overlay: rgba(0, 0, 0, 0.2);
+  --mediumgray-overlay: rgba(0, 0, 0, 0.5);
+  --darkgray-overlay: rgba(0, 0, 0, 0.8);
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("product-sans.ttf");
+}
+
+*, *:before, *:after {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--darkblue);
+  font-family: "Product Sans";
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.top-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+}
+
+.counter-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  color: white;
+  text-shadow: 0 0 10px var(--darkblue);
+  z-index: 999;
+}
+
+
+.cards {
+  width: 250px;
+  height: 350px;
+  margin-top: 50px;
+  flex-grow: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: inline-block;
+  width: 250px;
+  height: 350px;
+  overflow: show;
+  position: absolute;
+  will-change: transform;
+  transition: all 0.3s ease-out;
+  perspective: 1000px;
+}
+
+.card--inner {
+  transition: transform 0.5s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+
+.card.rotated .card--inner {
+  transform: rotateY(-180deg);
+}
+
+.card--front, .card--back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 30px 30px 70px 30px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 2px var(--lightgray-overlay);
+  font-size: 30px;
+  background: white;
+  box-sizing: border-box;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card--front.multiple, .card--back.multiple {
+  padding: 30px;
+  align-items: flex-start;
+}
+
+.card--front.long-text, .card--back.long-text {
+  font-size: 25px;
+}
+
+.card--front.very-long-text, .card--back.very-long-text {
+  font-size: 20px;
+}
+
+.card--back {
+  transform: rotateY(-180deg);
+}
+
+.moving.card {
+  transition: none;
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: grabbing;
+}
+
+.card img {
+  max-width: 100%;
+  pointer-events: none;
+}
+
+.buttons {
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 20px;
+  font-family: "Product Sans";
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  border: transparent;
+  transition: 0.5s;
+}
+
+button:disabled {
+  background: var(--lightwhite-overlay);
+  color: gray;
+}
+
+button:not(:disabled):hover {
+  background: var(--mediumwhite-overlay);
+  cursor: pointer;
+}
+
+button.notebook {
+  position: relative;
+  box-shadow: 0 0 10px 2px var(--darkblue);
+}
+
+.bottom-nav {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.faded {
+  opacity: 0.3;
+}
+
+.faded:hover {
+  opacity: 1;
+}
+
+.trash-container button {
+  color: white;
+  background-color: var(--palered);
+}
+
+.trash-container button:hover {
+  color: white;
+  background-color: var(--palered);
+}
+
+#modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--lightgray-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: 0.5s ease-in-out;
+}
+
+#modal-container.hidden {
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: 0.5s ease-in-out;
+}
+
+.modal {
+  position: relative;
+  width: 300px;
+  height: 85%;
+  padding: 5px;
+  box-sizing: border-box;
+  color: white;
+  background: var(--darkblue);
+  border: 1px solid var(--paleblue);
+  box-shadow: 0 0 10px var(--lightwhite-overlay);
+  transition: 0.5s ease-in-out;
+  box-sizing: border-box;
+}
+
+.hidden .modal {
+  transform: translateX(100%);
+  transition: 0.5s ease-in-out;
+}
+
+#close-modal-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  background: var(--paleblue-overlay);
+}
+
+#close-modal-button:hover {
+  background: var(--mediumwhite-overlay);
+}
+
+.modal-navbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.modal-navbar .option {
+  padding: 10px;
+  margin: 0 10px 0;
+  border-radius: 20px 0 0 0;
+  border-bottom: 1px solid var(--paleblue);
+  transition: 0.5s;
+}
+
+.modal-navbar .option:hover {
+  padding: 10px;
+  background: var(--paleblue-overlay);
+}
+
+.modal-navbar .option.selected {
+  border-bottom: 3px solid var(--paleblue);
+}
+
+.modal .notebook-content {
+  position: relative;
+  height: 75%;
+  margin: 20px 10px 10px;
+  font-size: 14px;
+  overflow-x: show;
+  overflow-y: scroll;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  counter-reset: number;
+}
+
+.modal .notebook-content .options {
+  padding: 10px;
+  margin: 0 10px 10px 0;
+  border-radius: 10px;
+  background: white;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal .notebook-content .options .option {
+  width: 50%;
+}
+
+.modal .notebook-content .item {
+  position: relative;
+  padding: 10px;
+  margin: 0 10px 10px 0;
+  border-radius: 10px;
+  background: white;
+  color: black;
+  counter-increment: number;
+}
+
+.item .counter {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: var(--mediumgray-overlay);
+}
+
+.counter::before {
+  content: counter(number) " ";
+}
+
+.notebook-content .subitem {
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--darkblue);
+}
+
+.card .subitem {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.subitem-label {
+  margin-bottom: 3px;
+  text-decoration: underline;
+}
+
+/* .subitem-label::after {
+  content: ":";
+} */
+
+.notebook-content .subitem-content {
+  background-color: var(--paleblue-overlay);
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: var(--lightwhite-overlay);
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--paleblue);
+}
+
+.modal .notebook-content .item .delete-item-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  color: black;
+  background: var(--palered-overlay);
+}
+
+.modal .sheet-container {
+  margin: 0 5px 0;
+  padding: 0 5px 5px;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.sheet-container .sheet {
+  display: inline-block;
+  height: 15px;
+  margin: 0 5px 0;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 10px 0 0 0;
+  transition: 0.5s;
+}
+
+.sheet-container .sheet:hover {
+  background: var(--lightwhite-overlay);
+}
+
+.sheet-container .sheet.selected {
+  background: var(--lightwhite-overlay);
+}

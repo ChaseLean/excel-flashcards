@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="hero">
+    <div class="outer-container">
+      <div class="counter-container">
+        <i class="fa-regular fa-hashtag"></i>
+        <span id="counter">0</span>
+      </div>
+      <div class="top-nav">
+        <button class="faded" id="notebook-button">
+          <i class="fa-solid fa-book"></i>
+        </button>
+      </div>
+      <div class="cards">
+        <!-- The cards go here -->
+      </div>
+      <div class="buttons">
+        <button id="back-button" disabled><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="rotate-button"><i class="fa-solid fa-arrows-rotate"></i></button>
+        <button id="next-button"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="bottom-nav">
+        <div class="trash-container">
+          <button class="faded" id="trash"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-container" class="">
+    <div class="modal">
+      <div class="modal-navbar">
+        <div class="option selected">
+          My words
+        </div>
+        <div class="option">
+          Use another file
+        </div>
+        <button id="close-modal-button"><i class="fa-solid fa-xmark fa-2xs"></i></button>
+      </div>
+      <div class="notebook-content custom-scroll">
+      </div>
+      <div class="sheet-container custom-scroll">
+      </div>
+    </div>
+  </div>
+
+  <script src="hammer.js"></script>
+  <script src="utility.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
