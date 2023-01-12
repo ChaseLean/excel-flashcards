@@ -1,3 +1,5 @@
-# Swipe card effect
+# Excel Flashcards App
 
-https://chaselean.github.io/swipe-card-effect/
+## Run demo:
+
+https://replit.com/@ChaseLean/excel-flashcards#index.js
