@@ -17,7 +17,9 @@
   src: url("product-sans.ttf");
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   padding: 0;
   margin: 0;
 }
@@ -33,6 +35,14 @@ body {
   -ms-user-select: none;
   user-select: none;
   overflow: hidden;
+}
+
+input, button {
+  font-family: "Product Sans";
+}
+
+.hidden {
+  display: none;
 }
 
 .hero {
@@ -99,7 +109,8 @@ body {
   transform: rotateY(-180deg);
 }
 
-.card--front, .card--back {
+.card--front,
+.card--back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -118,17 +129,10 @@ body {
   overflow: hidden;
 }
 
-.card--front.multiple, .card--back.multiple {
+.card--front.multiple,
+.card--back.multiple {
   padding: 30px;
   align-items: flex-start;
-}
-
-.card--front.long-text, .card--back.long-text {
-  font-size: 25px;
-}
-
-.card--front.very-long-text, .card--back.very-long-text {
-  font-size: 20px;
 }
 
 .card--back {
@@ -194,23 +198,13 @@ button.notebook {
   opacity: 1;
 }
 
-.trash-container button {
-  color: white;
-  background-color: var(--palered);
-}
-
-.trash-container button:hover {
-  color: white;
-  background-color: var(--palered);
-}
-
 #modal-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--lightgray-overlay);
+  background: var(--mediumgray-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -233,10 +227,9 @@ button.notebook {
   box-sizing: border-box;
   color: white;
   background: var(--darkblue);
-  border: 1px solid var(--paleblue);
-  box-shadow: 0 0 10px var(--lightwhite-overlay);
   transition: 0.5s ease-in-out;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .hidden .modal {
@@ -246,8 +239,8 @@ button.notebook {
 
 #close-modal-button {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   width: 25px;
   height: 25px;
   background: transparent;
@@ -265,20 +258,22 @@ button.notebook {
   align-items: center;
 }
 
-.modal-navbar .option {
+.modal-navbar .nav {
+  height: 40px;
   padding: 10px;
   margin: 0 10px 0;
   border-radius: 20px 0 0 0;
   border-bottom: 1px solid var(--paleblue);
   transition: 0.5s;
+  box-sizing: border-box;
 }
 
-.modal-navbar .option:hover {
+.modal-navbar .nav:hover {
   padding: 10px;
   background: var(--paleblue-overlay);
 }
 
-.modal-navbar .option.selected {
+.modal-navbar .nav.selected {
   border-bottom: 3px solid var(--paleblue);
 }
 
@@ -303,11 +298,29 @@ button.notebook {
   color: black;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  flex-wrap: wrap;
+}
+
+.modal .notebook-content .options .instructions {
+  width: 100%;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--darkblue);
 }
 
 .modal .notebook-content .options .option {
   width: 50%;
+}
+
+.modal .notebook-content .options .option label{
+  display: flex;
+  align-items: center;
+}
+
+.modal .notebook-content .options .option input[type=checkbox] {
+  width: 20px;
+  height: 16px;
+  margin: 4px 5px 0;
 }
 
 .modal .notebook-content .item {
@@ -338,6 +351,10 @@ button.notebook {
 
 .card .subitem {
   margin-bottom: 10px;
+  text-align: center;
+}
+
+.card .multiple .subitem {
   text-align: left;
 }
 
@@ -345,10 +362,6 @@ button.notebook {
   margin-bottom: 3px;
   text-decoration: underline;
 }
-
-/* .subitem-label::after {
-  content: ":";
-} */
 
 .notebook-content .subitem-content {
   background-color: var(--paleblue-overlay);
@@ -378,13 +391,17 @@ button.notebook {
 }
 
 .modal .sheet-container {
+  position: absolute;
+  bottom: 10px;
+  width: 90%;
   margin: 0 5px 0;
   padding: 0 5px 5px;
   overflow-x: scroll;
   white-space: nowrap;
+  background: linear-gradient(transparent, var(--darkblue));
 }
 
-.sheet-container .sheet {
+.sheet-container .sheet-selector {
   display: inline-block;
   height: 15px;
   margin: 0 5px 0;
@@ -392,12 +409,46 @@ button.notebook {
   font-size: 14px;
   border-radius: 10px 0 0 0;
   transition: 0.5s;
+  text-shadow: 0 0 5px var(--darkblue);
 }
 
-.sheet-container .sheet:hover {
+.sheet-container .sheet-selector:hover {
   background: var(--lightwhite-overlay);
 }
 
-.sheet-container .sheet.selected {
+.sheet-container .sheet-selector.selected {
   background: var(--lightwhite-overlay);
+}
+
+.upload-container {
+  padding: 20px;
+  font-size: 14px;
+}
+
+.upload-container p {
+  margin: 10px 0 10px;
+}
+
+.upload-container input[type=file] {
+  margin: 10px 0 10px;
+  width: 100%;
+}
+
+#submit-file-button, input::file-selector-button {
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 0;
+  font-size: inherit;
+  width: fit-content;
+  height: fit-content;
+  color: black;
+  font-family: "Product Sans";
+  border: none;
+  background: white;
+  cursor: pointer;
+}
+
+#submit-file-button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
